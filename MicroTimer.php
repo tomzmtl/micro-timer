@@ -1,43 +1,48 @@
 <?php namespace App\Helpers;
 
+/**
+ * MicroTimer class.
+ * Once created and started, a timer can only be reused by using the reset() method.
+ *
+ * @version 1.0
+ */
 class MicroTimer
 {
 
     /**
+     * Start time. Unix timestamp.
      *
-     * @todo
-     *
-     *
+     * @var int
      */
-    private $start = null;
+    private $start = 0;
 
     /**
+     * End time. Unix Timestamp.
      *
-     * @todo
-     *
-     *
+     * @var int
      */
-    private $end   = null;
+    private $end;
 
     /**
+     * Elapsed time in milliseconds.
      *
-     * @todo
-     *
-     *
+     * @var int
      */
     private $elapsed = 0;
 
 
 
     /**
+     * Start timer.
      *
-     * @todo
-     *
-     *
+     * @return self
      */
     public function start ()
     {
-        $this->start = microtime(true);
+        if ( $start === 0 )
+        {
+            $this->start = microtime(true);
+        }
 
         return $this;
     }
@@ -45,15 +50,17 @@ class MicroTimer
 
 
     /**
+     * Stop timer.
      *
-     * @todo
-     *
-     *
+     * @return self
      */
     public function stop ()
     {
-        $this->end = microtime(true);
-        $this->elapsed = round( $this->end - $this->start, 2 );
+        if ( !$end )
+        {
+            $this->end = microtime(true);
+            $this->elapsed = $this->end - $this->start;
+        }
 
         return $this;
     }
@@ -61,27 +68,42 @@ class MicroTimer
 
 
     /**
-     *
-     * Get time in seconds.
-     * @todo
-     *
-     *
+     * Get time in microseconds.
      */
-    public function getTime ( $prepend = null )
+    public function getTime ()
     {
-        if ( !$this->elapsed )
-        {
-            $this->stop();
-        }
+        return $this->elapsed;
+    }
 
-        $seconds = $this->elapsed;
 
-        if ( $prepend )
-        {
-            $seconds .= $prepend;
-        }
 
-        return $seconds;
+    /**
+     *
+     * Get time in seconds. Stops timer if still running.
+     * Optional argument is prepended to the output value for
+     *
+     * @param int $digits
+     * @return float
+     */
+    public function getTimeInSeconds ( $digits = 2 )
+    {
+        return round( $this->elapsed, $digits );
+    }
+
+
+
+    /**
+     * Reinitialize the time.
+     *
+     * @return self
+     */
+    public function reset ()
+    {
+        $this->start = 0;
+        $this->end = null;
+        $this->elapsed = 0;
+
+        return $this;
     }
 
 
