@@ -26,23 +26,31 @@ All methods return the object instance and can be chained.
 
 ## Available methods
 
-#### MicroTimer::start()
+```php
 
-Start the timer.
+<?php
 
-#### MicroTimer::stop()
+    // Start the timer.
+    $timer->start();
 
-Stop the timer.
+    // Stop the timer.
+    $timer->stop()
 
-#### MicroTimer::getTime()
+    // Get time (milliseconds).
+    $timer->getTime()
 
-Return the time in milliseconds. Do not stop the timer.
+    // Get time (seconds) with 3 decimals.
+    $timer->getTimeInSeconds( 3 )
 
-#### MicroTimer::getTimeInSeconds( $digits = 2 )
+    // Erase and reset internal data.
+    $timer->reset()
 
-Return the time in seconds. Optional argument defines number of digits.
 
-#### MicroTimer::reset()
+?>
+
+```
+
+## Notes
 
 By design, each MicroTimer instance can only be started and stopped once, retaining all its internal data.
 
