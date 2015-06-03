@@ -34,16 +34,16 @@ All methods return the object instance and can be chained.
     $timer->start();
 
     // Stop the timer.
-    $timer->stop()
+    $timer->stop();
 
     // Get time (milliseconds).
-    $timer->getTime()
+    $timer->getTime();
 
     // Get time (seconds) with 3 decimals.
-    $timer->getTimeInSeconds( 3 )
+    $timer->getTimeInSeconds(3);
 
     // Erase and reset internal data.
-    $timer->reset()
+    $timer->reset();
 
 
 ?>
@@ -52,6 +52,6 @@ All methods return the object instance and can be chained.
 
 ## Notes
 
-By design, each MicroTimer instance can only be started and stopped once, retaining all its internal data.
+By design, each MicroTimer instance can only be started and stopped once, retaining all its internal data for later use.
 
-If you need to reuse an instance, use the reset method.
+Reuse a previously-created instance by using the reset() method.

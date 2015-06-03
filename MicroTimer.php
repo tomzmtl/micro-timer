@@ -1,10 +1,10 @@
-<?php namespace App\Helpers;
+<?php
 
 /**
  * MicroTimer class.
  * Once created and started, a timer can only be reused by using the reset() method.
  *
- * @version 1.0
+ * @version 1.0.1
  */
 class MicroTimer
 {
@@ -39,7 +39,7 @@ class MicroTimer
      */
     public function start ()
     {
-        if ( $start === 0 )
+        if ( $this->start === 0 )
         {
             $this->start = microtime(true);
         }
@@ -56,7 +56,7 @@ class MicroTimer
      */
     public function stop ()
     {
-        if ( !$end )
+        if ( !$this->end )
         {
             $this->end = microtime(true);
             $this->elapsed = $this->end - $this->start;
@@ -82,12 +82,12 @@ class MicroTimer
      * Get time in seconds. Stops timer if still running.
      * Optional argument is prepended to the output value for
      *
-     * @param int $digits
+     * @param int $decimals
      * @return float
      */
-    public function getTimeInSeconds ( $digits = 2 )
+    public function getTimeInSeconds ( $decimals = 2 )
     {
-        return round( $this->elapsed, $digits );
+        return round( $this->elapsed, $decimals );
     }
 
 
